@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "TableViewController.h"
 
 @interface ViewController ()
 
@@ -15,8 +16,27 @@
 @implementation ViewController
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
+    
+    [self initMainView];
     // Do any additional setup after loading the view, typically from a nib.
+}
+
+- (void)initMainView
+{
+    UIButton *pushButton = [[UIButton alloc]initWithFrame:CGRectMake(40, 100, 320-80, 40)];
+    pushButton.backgroundColor = [UIColor clearColor];
+    [pushButton setTitle:@"PUSH" forState:UIControlStateNormal];
+    [pushButton setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
+    [pushButton addTarget:self action:@selector(pushToController) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview:pushButton];
+}
+
+- (void)pushToController
+{
+    [self.navigationController pushViewController:[[TableViewController alloc]initWithStyle:UITableViewStylePlain] animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
